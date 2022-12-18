@@ -134,11 +134,9 @@ public class Car {
     public Key getKey() {
         return key;
     }
-
     public void setKey(Key key) {
         this.key = key;
     }
-
     public static class Key {
         private final boolean remoteRunEngine;
         private final boolean withoutKeyAccess;
