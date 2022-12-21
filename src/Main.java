@@ -1,4 +1,7 @@
+import transport.Bus;
 import transport.Car;
+import transport.Transport;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,8 +12,26 @@ public class Main {
         Car hyundai = new Car("Hyundai", "Avante", "Южная Корея", "Оранжевый", 1.6,2016,"Хэтчбэк",5,"Механическая",445,true,new Car.Key(true,true));
         System.out.println(lada);
         System.out.println(audi);
-        System.out.println(BMW);
-        System.out.println(KIA);
-        System.out.println(hyundai);
+        lada.setMaxSpeed(180);
+        lada.getInfo();
+
+
+
+        Car porsche = new Car("Porsche", "911 model", 1973, "Germany", "Yellow", 320);
+        porsche.getInfo();
+
+        Car skoda = new Car("Skoda", "SuperB", "Чехия", "Красный", 2.4,-1,"Хэтчбэк",5,"Механическая",445,true,new Car.Key(true,true));
+        System.out.println(skoda);
+
+
+        Bus volvo = new Bus("Volvo", "X2000", 2015, "Germany", "Blue", 120);
+        Bus faw = new Bus("FAW", "FlyWagon", 2020, "China", "Grey", 95);
+        Bus liaz = new Bus("LIAZ", "5256", 2010, "Russia", "", -120);
+
+        System.out.println(volvo);
+        System.out.println(faw);
+        System.out.println(liaz);
+
+
     }
 }

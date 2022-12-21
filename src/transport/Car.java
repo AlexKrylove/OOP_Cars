@@ -2,38 +2,25 @@ package transport;
 
 import java.time.LocalDate;
 
-public class Car {
-    private final String brand;
-    private final String model;
-    private final int year;
-    private final String country;
-    private final String typeOfBody;
-    private final int seatsCount;
-    private String color;
+public final class Car extends Transport {
+    private String typeOfBody;
+    private int seatsCount;
     private double engineVolume;
     private String gears;
     private boolean summerTires;
     private int regNumber;
     private Key key;
 
-    public Car(String brand, String model, String country, String color, double engineVolume, int year, String typeOfBody, int seatsCount, String gears, int regNumber, boolean summerTires, Key key) {
-        if (brand == null || brand.isEmpty()) {
-            brand = "default";
-        }
-        this.brand = brand;
+    public Car(String brand, String model, int year, String country, String colorBody, double maxSpeed) {
+        super(brand, model, year, country, colorBody, maxSpeed);
+    }
 
-        this.model = model;
+    public Car(String brand, String model, String country, String colorBody, double engineVolume, int year, String typeOfBody, int seatsCount, String gears, int regNumber, boolean summerTires, Key key) {
+        super(brand, model, year, country, colorBody, 0);
         if (engineVolume <= 0) {
             engineVolume = 1.5;
         }
         this.engineVolume = engineVolume;
-        this.color = color;
-        if (year <= 0) {
-            this.year = 2000;
-        } else {
-            this.year = year;
-        }
-        this.country = country;
         if (typeOfBody == null || typeOfBody.isEmpty()) {
             typeOfBody = "седан";
         }
@@ -48,11 +35,12 @@ public class Car {
             this.key = key;
         }
     }
+
     @Override
     public String toString() {
         return brand + " " + model +
                 ", объем двигателя - " + engineVolume +
-                ", цвет кузова - " + color +
+                ", цвет кузова - " + colorBody +
                 ", год выпуска - " + year +
                 ", страна производства - " + country +
                 ", количество мест - " + seatsCount +
@@ -63,20 +51,14 @@ public class Car {
                 ". " + (key.isWithoutKeyAccess() ? "Доступ бесключевой" : "Открывается ключом");
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
+    public void getInfo() {
+        System.out.println("Транспорт: " +
+                "Марка: " + brand +
+                ", модель: " + model +
+                ", год выпуска: " + year +
+                ", страна выпуска: " + country +
+                ", цвет: " + colorBody +
+                ", макс. скорость: " + maxSpeed);
     }
 
     public String getTypeOfBody() {
@@ -85,14 +67,6 @@ public class Car {
 
     public int getSeatsCount() {
         return seatsCount;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public double getEngineVolume() {
@@ -134,9 +108,11 @@ public class Car {
     public Key getKey() {
         return key;
     }
+
     public void setKey(Key key) {
         this.key = key;
     }
+
     public static class Key {
         private final boolean remoteRunEngine;
         private final boolean withoutKeyAccess;
